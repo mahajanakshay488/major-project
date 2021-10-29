@@ -1,0 +1,33 @@
+  <section class="home-container pt-4 pb-4">
+
+    <form (ngSubmit)="jobSearchSubmit()" #form="ngForm" class="jumbotron container bg-dark w-50 p-4">
+    <div class="form-group">
+      <label  class="bmd-label-floating text-primary">Job Title</label>
+      <input ngModel name="title" type="text" class="form-control text-white">
+      <small class="text-white">e.g. job, company, title</small>
+    </div>
+    
+    <div class="form-group">
+      <label class="bmd-label-floating text-primary">JOb City</label>
+      <input ngModel name="city" type="text" class="form-control text-white">
+      <small class="text-white">e.g. city or state</small>
+    </div> 
+
+    <div class="form-group">
+        <button type="submit" class="d-flex align-items-center btn btn-primary">
+          <i class="material-icons">search</i>  &nbsp; Search Job
+        </button>
+    </div> 
+  </form>
+
+  <div class="container text-center bg-transparent">
+    <figure class="mb-0">
+      <img src="../../assets/./undraw02.svg" height="290" alt="">
+      <img src="../../assets/./undraw01.svg" height="290" alt="">
+      <figcaption class="text-muted mt-3">
+        The only Platform for <strong>Employee & Employer </strong>. 
+      </figcaption>
+    </figure>
+  </div>
+
+</section>

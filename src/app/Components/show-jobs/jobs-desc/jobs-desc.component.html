@@ -1,0 +1,71 @@
+<section class="pt-5 pr-5 pl-5">
+
+    <div class="jumbotron p-2 w-100 bg-light">
+        
+        <div class="d-flex flex-row align-items-center">
+            <img src={{vacancy.postedby.avatar}} height="100" width="100" alt="..." class="rounded-circle">
+            <div class="card-body">
+                <h5 class="card-title">{{vacancy.title}}</h5>
+                <h6 class="card-subtitle  text-muted">{{vacancy.role}}</h6>
+                <small class="text-muted ">Location of the job</small>
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center mt-5">
+
+            <div class="text-center">
+                <p class="rounded-circle bg-white job-desc"><i class="fas fa-industry text-primary"></i></p>
+                <div class="card-body">
+                    <h6 class="card-subtitle  text-muted">{{vacancy.role}}</h6>
+                    <small class="text-muted ">Job Industry</small>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="rounded-circle bg-white job-desc"><i class="fas fa-rupee-sign text-primary"></i></p>
+                <div class="card-body">
+                    <h6 class="card-subtitle text-muted">{{vacancy.salary}}</h6>
+                    <small class="text-muted ">Salary per month</small>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="rounded-circle bg-white job-desc"><i class="fas fa-briefcase text-primary"></i></p>
+                <div class="card-body">
+                    <h6 class="card-subtitle text-muted">{{vacancy.experience}} Yr.</h6>
+                    <small class="text-muted ">Experience</small>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="rounded-circle bg-white job-desc"><i class="fas fa-graduation-cap text-primary"></i></p>
+                <div class="card-body">
+                    <h6 class="card-subtitle text-muted">{{vacancy.qualification}}</h6>
+                    <small class="text-muted ">Minimum Qualification</small>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="rounded-circle bg-white job-desc"><i class="fas fa-user-md text-primary"></i></p>
+                <div class="card-body">
+                    <h6 class="card-subtitle  text-muted">{{vacancy.gender === 'both' ? 'male/female' : vacancy.gender }}</h6>
+                    <small class="text-muted ">Employment</small>
+                </div>
+            </div>
+
+        </div>
+
+        <hr>
+    <p class="display-3 text-center mt-3 mb-3 text-primary">Job Description</p>
+
+    <p class="container jumbotron bg-white p-4">{{vacancy.description}}</p>
+
+    <div class="text-center jumbotron bg-transparent">
+        <h2 class="display-4 text-primary mb-3">Required Skills</h2>
+        <span *ngFor="let s of vacancy.skills" class="border border-primary rounded badge text-primary mr-3">{{s}}</span>
+    </div>
+
+    </div>
+        <button (click)="onApplyNow()"  class="d-block btn btn-primary btn-lg mb-4 ml-auto mr-auto">Apply Now</button>
+</section>
+

@@ -1,0 +1,59 @@
+<ng-template #empty>
+  <p class="container mt-3 mb-3 display-5 text-primary text-info">Vacancy not found !</p>
+</ng-template>
+
+<div class="d-flex p-4">
+    
+    <div class="w-20">
+
+      <div class=" d-flex flex-column align-items-center p-2 mb-3">
+        <img src="{{employe.avatar}}" class="rounded-circle" height="100" width="100" alt="...">
+        <strong class="mt-2">{{employe.name}}</strong>  
+        <small>{{employe.email}}</small>
+      </div>
+
+  
+      <div class="d-flex justify-content-between align-items-center">
+
+        <a class="navbar-brand">Applied Vacancies</a>
+
+        <div class="d-flex">
+
+          <a routerLink='/post-job'>
+            <strong class="text-primary"><i class="bi bi-briefcase-fill"></i></strong>
+          </a>
+          
+        </div>
+      </div>
+
+      <div *ngIf="vacancy else empty">
+        <div class="list-group" id="list-tab" role="tablist">
+        
+          <a *ngFor="let j of vacancy.postedJobs; let i = index" class="list-group-item list-group-item-action {{i===0 ? 'active' : ''}}" id="list-{{i}}-list" data-toggle="list" href="#list-{{i}}" role="tab" aria-controls="{{i}}">
+            {{j.title}}
+          </a>
+        </div>
+  
+      </div>
+
+    </div>
+    <div class="w-80">
+      <!-- <p class="container mt-3 mb-4 display-4 text-center">Vacancy</p> -->
+      <div class="tab-content" id="nav-tabContent">
+        <div *ngFor="let j of vacancy.postedJobs; let i = index" class="tab-pane fade show {{i===0 ? 'active' : ''}}" id="list-{{i}}" role="tabpanel" aria-labelledby="list-{{i}}-list">
+            <div class="card container w-60 p-4 mt-3">
+                <h5 class="card-title">{{j.title}}</h5>
+                <h6 class="card-subtitle mb-3 text-muted">{{j.role}}</h6>
+                <div class="d-flex flex-row ">
+                    <img src="{{vacancy.avatar}}" height="100" width="auto" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">{{j.description}}</p>
+                        <a routerLink='/jobs-desc' class="card-link">Job description</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  </div>

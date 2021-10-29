@@ -1,0 +1,65 @@
+.navigation-contianer{
+    overflow: auto;
+    width: 100% ;
+    min-height: 93.5%;
+}
+
+.main-bgcolor{
+    background-color: #2B2A28;
+}
+
+.toggle-logout{
+  background-image: linear-gradient(to bottom right, #046d62, #046d62, #07a797);
+  box-shadow: inset 0 1px 6px rgba(41, 41, 41, 0.2),
+                    0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: default;
+  color: #E6E6E6;
+  border-color: transparent;
+  text-shadow: 0 1px 1px rgba(40, 40, 40, 0.75);
+  padding: 5px 8px;
+}
+
+input[type="radio"].toggle {
+    display: none;
+  }
+
+  a{
+    font-size: 16px !important;
+  }
+
+  label{
+    outline: none
+  }
+
+input[type="radio"].toggle:checked + label {
+    background-image: linear-gradient(to bottom right, #046d62, #046d62, #07a797);
+    box-shadow: inset 0 1px 6px rgba(41, 41, 41, 0.2),
+                      0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: default;
+    color: #E6E6E6;
+    border-color: transparent;
+    text-shadow: 0 1px 1px rgba(40, 40, 40, 0.75);
+  }
+  
+  input[type="radio"].toggle + label {
+    /* width: 3em; */
+    padding: 10px;
+    color:#6C757D;
+  }
+  
+  input[type="radio"].toggle:checked + label.btn:hover {
+    background-color: inherit;
+    background-position: 0 0;
+    transition: none;
+  }
+  
+  input[type="radio"].toggle-left + label {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  input[type="radio"].toggle-right + label {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }

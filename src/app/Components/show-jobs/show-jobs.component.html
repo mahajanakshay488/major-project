@@ -1,0 +1,17 @@
+<section class="w-100 show-jobs-container">
+
+    <h1 class="container  display-3 pt-5">Searched Related Jobs</h1>
+
+    <div *ngFor=" let v of matchedVacancy" class="card p-2 container w-50 mt-3">
+        <h5 class="card-title">{{v.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{v.role}}</h6>
+        <div class="d-flex flex-row ">
+            <img src={{v.postedby.avatar}} height="100" alt="...">
+            <div class="card-body">
+                <p class="card-text">{{v.description}}</p>
+                <button (click)="vacancyDetail(v)" class="card-link btn btn-primary sm">More Details</button>
+            </div>
+        </div>
+    </div>
+    
+</section>
