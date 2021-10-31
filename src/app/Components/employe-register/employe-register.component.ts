@@ -29,7 +29,7 @@ export class EmployeRegisterComponent implements OnInit {
 
   async uploadImage(event){
     const file = event.target.files[0];
-    const uploadPath = "sherySkill"+Date.now();
+    const uploadPath = "Resume"+Date.now();
     const strorageRef = this.storage.ref(uploadPath);
 
     await this.storage.upload(uploadPath, file).snapshotChanges().pipe(
@@ -38,14 +38,12 @@ export class EmployeRegisterComponent implements OnInit {
 
       this.unsubs = this.avatarLink.subscribe( value => this.avatarUrl = value );
 
-    //console.log(file);
   }
 
   registerEmployee(){
     const employee = this.form.form.value;
-    employee.avatar = this.avatarUrl;
-    employee.apliedJobs = [''];
-    employee.addedTasks = [''];
+    employee.resume = this.avatarUrl;
+    // employee.apliedJobs = [''];
     this.unsubs.unsubscribe();
     this.EmployeeService.RegisterEmployee(employee);
   }

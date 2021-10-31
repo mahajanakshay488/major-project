@@ -16,10 +16,11 @@ export class EmployeeDashComponent implements OnInit {
   ngOnInit(): void {
     this.EmployeeService.employee$.subscribe(e => {
       this.employe = e;
-      e.apliedJobs[0].hasOwnProperty('title')?
-      this.vacancy = e : null;
-      console.log(e);
+      // e.apliedJobs[0].hasOwnProperty('title')?
+      // this.vacancy = e.apliedJobs : null;
     });
+
+    
   }
 
 }

@@ -12,24 +12,24 @@
         <small>{{employer.email}}</small>
       </div>
 
-  
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-center align-items-center mb-2">
 
-        <a class="navbar-brand">List of Vacancies</a>
+        <a routerLink="/post-job" class="">
+          <button type="button" class="btn btn-outline-info">
+            <i class="bi bi-plus-circle"></i> &nbsp; Post Job
+          </button>
+        </a>
 
-        <div class="d-flex">
-
-          <a routerLink='/post-job'>
-            <strong class="text-primary"><i class="bi bi-plus-circle-fill"></i></strong>
-          </a>
-          
-        </div>
       </div>
+
+      <hr>
+
+        <p class="navbar-brand">List of Vacancies</p>
 
       <div *ngIf="vacancy else empty">
         <div class="list-group" id="list-tab" role="tablist">
         
-          <a *ngFor="let j of vacancy.postedJobs; let i = index" class="list-group-item list-group-item-action {{i===0 ? 'active' : ''}}" id="list-{{i}}-list" data-toggle="list" href="#list-{{i}}" role="tab" aria-controls="{{i}}">
+          <a *ngFor="let j of vacancy; let i = index" class="list-group-item list-group-item-action {{i===0 ? 'active' : ''}}" id="list-{{i}}-list" data-toggle="list" href="#list-{{i}}" role="tab" aria-controls="{{i}}">
             {{j.title}}
           </a>
         </div>
@@ -38,21 +38,70 @@
 
     </div>
     <div class="w-80">
-      <p class="container mt-3 mb-4 display-4 text-center">Vacancy</p>
+
       <div class="tab-content" id="nav-tabContent">
-        <div *ngFor="let j of vacancy.postedJobs; let i = index" class="tab-pane fade show {{i===0 ? 'active' : ''}}" id="list-{{i}}" role="tabpanel" aria-labelledby="list-{{i}}-list">
-            <div class="card container w-60 p-4 mt-3">
-                <h5 class="card-title">{{j.title}}</h5>
-                <h6 class="card-subtitle mb-3 text-muted">{{j.role}}</h6>
-                <div class="d-flex flex-row ">
-                    <img src="{{vacancy.avatar}}" height="100" width="auto" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">{{j.description}}</p>
-                        <a routerLink='/jobs-desc' class="card-link">Job description</a>
-                    </div>
-                </div>
+        <div *ngFor="let j of vacancy; let i = index" class="tab-pane fade show {{i===0 ? 'active' : ''}}" id="list-{{i}}" role="tabpanel" aria-labelledby="list-{{i}}-list">
+
+            <div class="card container bg-light w-60 p-4 mt-3">
+        
+              <div class="d-flex flex-row align-items-center">
+                  <div class="card-body">
+                      <h5 class="card-title">{{j.title}}</h5>
+                      <h6 class="card-subtitle  text-muted">{{j.role}}</h6>
+                      <small class="text-muted ">{{j.city}}</small>
+                  </div>
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center mt-5">
+      
+                  <div class="text-center">
+                      <p><i class="fas fa-rupee-sign text-primary"></i></p>
+                      <div class="card-body">
+                          <h6 class="card-subtitle text-muted">{{j.salary}}</h6>
+                          <small class="text-muted ">Salary per month</small>
+                      </div>
+                  </div>
+      
+                  <div class="text-center">
+                      <p><i class="fas fa-briefcase text-primary"></i></p>
+                      <div class="card-body">
+                          <h6 class="card-subtitle text-muted">{{j.experience}} Yr.</h6>
+                          <small class="text-muted ">Experience</small>
+                      </div>
+                  </div>
+      
+                  <div class="text-center">
+                      <p><i class="fas fa-graduation-cap text-primary"></i></p>
+                      <div class="card-body">
+                          <h6 class="card-subtitle text-muted">{{j.qualification}}</h6>
+                          <small class="text-muted ">Minimum Qualification</small>
+                      </div>
+                  </div>
+      
+                  <div class="text-center">
+                      <p><i class="fas fa-user-md text-primary"></i></p>
+                      <div class="card-body">
+                          <h6 class="card-subtitle  text-muted">{{j.gender === 'both' ? 'male/female' : j.gender }}</h6>
+                          <small class="text-muted ">Employment</small>
+                      </div>
+                  </div>
+              </div>
+
+              <p class="display-5 text-center mt-3 mb-3 text-primary">Job Description</p>
+
+              <p class="text-center">{{j.description}}</p>
+
+              <div class="text-center">
+                <p class="display-5 text-center mt-3 mb-3 text-primary">Required Skills</p>
+                <p class="display-5 text-center mb-3">{{j.skills}}</p>
+              </div>
+              <div class="text-center mt-2">
+                <button (click)="deleteVacancy(j)" type="button" class="btn btn-outline-danger btn-sm">
+                  <i class="bi bi-archive"></i> &nbsp; Post Job
+                </button>
+              </div>
+              
             </div>
-            
         </div>
       </div>
     </div>

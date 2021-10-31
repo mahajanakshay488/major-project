@@ -30,7 +30,7 @@ export class EmployerRegisterComponent implements OnInit {
 
   async uploadImage(event){
     const file = event.target.files[0];
-    const uploadPath = "sherySkill"+Date.now();
+    const uploadPath = "EmployerLogo"+Date.now();
     const strorageRef = this.storage.ref(uploadPath);
 
     await this.storage.upload(uploadPath, file).snapshotChanges().pipe(
@@ -43,9 +43,7 @@ export class EmployerRegisterComponent implements OnInit {
   registerEmployer(){
     const employer = this.form.form.value;
     employer.avatar = this.avatarUrl;
-    employer.postedJobs = [''];
-    employer.todoTasks = [''];
-    employer.addedTasks = [''];
+    // employer.postedJobs = [''];
     this.unsubs.unsubscribe();
     console.log(employer);
     this.EmployerService.RegisterEmployer(employer);

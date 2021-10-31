@@ -8,10 +8,7 @@ import { switchMap } from 'rxjs/operators';
 export interface Employer{
   name: string,
   email: string,
-  avatar: string,
-  postedJobs: Array<any>,
-  addedTasks: Array<any>,
-  todoTasks: Array<any>
+  avatar: string
 }
 
 @Injectable({
@@ -48,8 +45,8 @@ export class EmployerService {
   RegisterEmployer(employer){
     this.auth.createUserWithEmailAndPassword(employer.email, employer.password)
     .then( employe =>{
-      const { name, email, avatar, postedJobs, addedTasks, todoTasks } = employer;
-      this.CreateEmployer({ name, email, avatar, postedJobs, addedTasks, todoTasks }, employe.user.uid);
+      const { name, email, avatar } = employer;
+      this.CreateEmployer({ name, email, avatar }, employe.user.uid);
     } );
   }
 

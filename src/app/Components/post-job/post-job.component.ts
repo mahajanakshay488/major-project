@@ -27,17 +27,18 @@ export class PostJobComponent implements OnInit {
 
       vacancy.skills = skills.split(',');
       vacancy.postedby = {name: employer.name, email: employer.email, avatar: employer.avatar};
+      vacancy.appliedby = [''];
 
       const employerVacancy = { title, role, skills, salary, city, 
-        experience, qualification, course, description, gender 
+        experience, qualification, course, description, gender
       };
 
-      (employer.postedJobs.length === 1 && employer.postedJobs[0] == '') ?
-        employer.postedJobs[0] = employerVacancy : employer.postedJobs.push(employerVacancy);
+      // (employer.postedJobs.length === 1 && employer.postedJobs[0] == '') ?
+      //   employer.postedJobs[0] = employerVacancy : employer.postedJobs.push(employerVacancy);
       
         console.log(vacancy, employer);
 
-        return this.vacanciesService.CreateVacancy(vacancy, employer);
+        return this.vacanciesService.CreateVacancy(vacancy);
     } );
   }
 

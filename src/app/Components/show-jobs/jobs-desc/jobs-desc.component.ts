@@ -20,27 +20,38 @@ export class JobsDescComponent implements OnInit, OnDestroy {
   ngOnInit(){
     this.vacancyService.activeVacancy.subscribe(value => {
       this.vacancy = value;
-      //console.log(`value ${value}`);
+      console.log(`value ${value}`);
     });
   }
 
   onApplyNow(){
     this.subs = this.employeService.employee$.subscribe( employee => {
-      const{
-        title, role, skills, salary, experience, qualification, 
+
+      const{name, email, avatar} = employee;
+      const emp = {name, email, avatar};
+      let newVacancy = this.vacancy;
+
+      (newVacancy.appliedby.length === 1 && newVacancy.appliedby[0] !== 'object') ?
+      newVacancy.appliedby[0] = emp : newVacancy.appliedby.push(emp);
+
+      this.vacancyService.UpdateVacancy(newVacancy);
+
+      this.subs.unsubscribe();
+
+      /* const{
+        title, avatar, role, skills, salary, experience, qualification, 
         course, description, gender, city, postedby
       } = this.vacancy;
 
       const employeVacancy = {
-        title, role, skills, salary, experience, qualification, 
+        title, avatar, role, skills, salary, experience, qualification, 
         course, description, gender, city, postedby
       };
 
       (employee.apliedJobs.length === 1 && employee.apliedJobs[0] !== 'object') ?
       employee.apliedJobs[0] = employeVacancy : employee.apliedJobs.push(employeVacancy);
-
-      this.subs.unsubscribe();
-      this.employeService.UpdateEmployee(employee);
+      
+      this.employeService.UpdateEmployee(employee); */
 
     });
 
