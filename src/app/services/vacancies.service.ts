@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface Vacany{
@@ -9,12 +9,12 @@ export interface Vacany{
   role: string,
   skills: Array<string>,
   salary: string,
-  experience: string,
   qualification: string,
   course: string,
   description: string,
   gender: string,
   city: string,
+  work: string,
   postedby: any,
   appliedby: Array<any>
 }
@@ -26,6 +26,8 @@ export class VacanciesService {
   vacancyRef: AngularFireList<any> = null;
   searchVacancy = new BehaviorSubject<any>(null);
   activeVacancy = new BehaviorSubject<any>(null);
+  activeVac = new BehaviorSubject<any>(null);
+  aplicantDestroyer = new Subject<any>();
 
   constructor(
     private db: AngularFireDatabase,
@@ -75,5 +77,4 @@ export class VacanciesService {
     this.vacancyRef.remove(key);
     console.log('vacancy deleted');
   }
-  
 }

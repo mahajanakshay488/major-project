@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 
 export interface Employee{
   name: string,
   email: string,
   avatar: string,
-  apliedJobs: Array<any>
+  resume: string
 }
 
 @Injectable({
@@ -42,14 +42,20 @@ export class EmployeeService {
       )
    }
 
-  FetchEmployee(){
-
+   FetchEmployee(){
+    return this.employeeRef.snapshotChanges()
+      .pipe(
+        map( changes => changes.map( c => {
+          let emp = c.payload.val();
+          return emp;
+        } ) )
+      )
   }
 
   RegisterEmployee(employee){
     this.auth.createUserWithEmailAndPassword(employee.email, employee.password).then(employe => {
-      const { name, email, avatar, apliedJobs } = employee;
-      this.CreateEmployee({ name, email, avatar, apliedJobs }, employe.user.uid);
+      const { name, email, avatar, resume } = employee;
+      this.CreateEmployee({ name, email, avatar, resume }, employe.user.uid);
     });
   }
 
@@ -76,4 +82,5 @@ export class EmployeeService {
     this.employeeRef.update(this.activeEmployeeId, employee);
     console.log('employee updated!');
   }
+  
 }

@@ -11,41 +11,10 @@
   <div class="form-group">
     <label class="bmd-label-floating">Functional Area/ Job Role</label>
     <select ngModel name="role" class="form-control">
-      <option value="Front Office / Receptionist/ Secretary">Front Office / Receptionist/ Secretary</option>
-      <option value="Banking / Insurance / Financial">Banking / Insurance / Financial</option>
-      <option value="Plumber / Painter / Carpenter">Plumber / Painter / Carpenter</option>
-      <option value="Tailoring">Tailoring</option>
-      <option value="Cleaner / Peon / Housekeeping / Washer">Cleaner / Peon / Housekeeping / Washer</option>
-      <option value="Fitter / Welder / Turner">Fitter / Welder / Turner</option>
-      <option value="Driver">Driver</option>
-      <option value="Labour / Helper / Worker">Labour / Helper / Worker</option>
-      <option value="Maid / Aaya / Caretaker">Maid / Aaya / Caretaker</option>
-      <option value="Mechanic / Electrician / Technician">Mechanic / Electrician / Technician</option>
-      <option value="Operator / Machinist / Moulder">Operator / Machinist / Moulder</option>
-      <option value="Legal / Company Secretary / Regulatory">Legal / Company Secretary / Regulatory</option>
-      <option value="Journalism / Editing / Content">Journalism / Editing / Content</option>
-      <option value="IT Hardware / Networking / Telecom Engineer">IT Hardware / Networking / Telecom Engineer</option>
-      <option value="Fashion Designing / Merchandising">Fashion Designing / Merchandising</option>
-      <option value="Logistics / Purchase / Import / Export">Logistics / Purchase / Import / Export</option>
-      <option value="Medical / Healthcare / Pharmaceuticals / Biotechnology">Medical / Healthcare / Pharmaceuticals / Biotechnology</option>
-      <option value="Fire / Security / Detective Services">Fire / Security / Detective Services</option>
-      <option value="Beauty / Fitness / Spa Services/ Sports">Beauty / Fitness / Spa Services/ Sports</option>
-      <option value="Architecture / Interior Design">Architecture / Interior Design</option>
-      <option value="Films / Entertainment / Media / Events">Films / Entertainment / Media / Events</option>
-      <option value="Data Analytics / MIS / Business Intelligence">Data Analytics / MIS / Business Intelligence</option>
-      <option value="Sales / Marketing / Business Development">Sales / Marketing / Business Development</option>
-      <option value="Accounts / Finance / Taxation">Accounts / Finance / Taxation</option>
-      <option value="Call Center/ Customer Service/ BPO">Call Center/ Customer Service/ BPO</option>
-      <option value="IT software / Application Programming">IT software / Application Programming</option>
-      <option value="HR / Recruitment / Administration / IR">HR / Recruitment / Administration / IR</option>
-      <option value="Data Entry / Back Office">Data Entry / Back Office</option>
-      <option value="Graphic / Web Design / Creative Design">Graphic / Web Design / Creative Design</option>
-      <option value="Hotels / Restaurants / Chef">Hotels / Restaurants / Chef</option>
-      <option value="Teaching / Education / Training / Counselling">Teaching / Education / Training / Counselling</option>
-      <option value="Travel / Tours / Ticketing / Airlines">Travel / Tours / Ticketing / Airlines</option>
-      <option value="Production / Service / Maintenance">Production / Service / Maintenance</option>
-      <option value="Engineer(Mechanical ,Civil, Electrical etc">Engineer(Mechanical ,Civil, Electrical etc.)</option>
-      <option value="Delivery / Field / Collection ">Delivery / Field / Collection /</option>
+      <option value="Programmer">Programmer</option>
+      <option value="Web Designer/Developer">Web Designer/Developer</option>
+      <option value="Backend Developer">Backend Developer</option>
+      <option value="MEAN/MERN Stack">MEAN/MERN Stack</option>
       <option value="Digital Marketing / SEO / Advertising">Digital Marketing / SEO / Advertising</option>
       <option value="Other">Other</option>
     </select>
@@ -66,10 +35,12 @@
     <input ngModel name="city" type="text" class="form-control">
   </div>
 
-
   <div class="form-group">
-    <label class="bmd-label-floating">Work Experience <small class="text-muted">(in years)</small></label>
-    <input ngModel name="experience" type="number" class="form-control">
+    <label class="bmd-label-floating">Select Work Type</label>
+    <select ngModel name="work" class="form-control">
+        <option value="In Office">In Office Work</option>
+        <option value="Work Form Home">Work Form Home</option>
+    </select>
   </div>
 
   <div class="form-group">
@@ -83,13 +54,6 @@
         <option value="Post Graduation" >Post Graduation</option>
     </select>
   </div>
-
-  <div class="form-group">
-    <label class="bmd-label-floating">Qualification Course</label>
-    <input ngModel name="course" type="text" class="form-control">
-  </div>
-
-
 
   <div class="form-group">
     <label class="bmd-label-floating">Job Description</label>
@@ -119,5 +83,6 @@
 </div>
   
   <button type="reset" class="btn btn-default">Reset</button> &nbsp;
+  <button (click)="onPatchValue()" type="button" class="btn btn-primary">Patch Value</button> &nbsp;
   <button type="submit" class="btn btn-primary btn-raised">Submit</button>
 </form>

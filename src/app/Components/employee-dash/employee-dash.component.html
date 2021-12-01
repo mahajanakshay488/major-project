@@ -7,8 +7,8 @@
     <div class="w-20">
 
       <div class=" d-flex flex-column align-items-center p-2 mb-3">
-        <div style="width: 100px; height: 100px;" class="rounded-circle bg-secondary">
-          <p class="display-4 text-center">JD</p>
+        <div style="width: 100px; height: 100px;" class="rounded-circle bg-light">
+          <p class="display-4 text-center"></p>
         </div>
         <!-- <img src="" class="rounded-circle" height="100" width="100" alt="..."> -->
         <strong class="mt-2">{{employe.name}}</strong>  
@@ -17,7 +17,7 @@
 
       <div class="d-flex align-items-center mb-4">
 
-          <a href="{{employe.avatar}}" target="_blank" rel="noopener noreferrer">
+          <a href="{{employe.resume}}" target="_blank" rel="noopener noreferrer">
             <span class="badge bg-info text-light p-2">
               <i class="bi bi-file-earmark-person"></i> &nbsp; Resume
             </span>
@@ -36,7 +36,7 @@
         <a class="navbar-brand">Applied Vacancies</a>
       </div>
 
-      <div *ngIf="vacancy else empty">
+      <div *ngIf="(vacancy) else empty">
         <div class="list-group" id="list-tab" role="tablist">
         
           <a *ngFor="let j of vacancy; let i = index" class="list-group-item list-group-item-action {{i===0 ? 'active' : ''}}" id="list-{{i}}-list" data-toggle="list" href="#list-{{i}}" role="tab" aria-controls="{{i}}">
@@ -55,10 +55,10 @@
                 <h5 class="card-title">{{j.title}}</h5>
                 <h6 class="card-subtitle mb-3 text-muted">{{j.role}}</h6>
                 <div class="d-flex flex-row ">
-                    <img src="{{j.avatar}}" height="100" width="auto" alt="...">
+                    <img src="{{j.postedby.avatar}}" height="100" width="auto" alt="...">
                     <div class="card-body">
                         <p class="card-text">{{j.description}}</p>
-                        <a routerLink='/jobs-desc' class="card-link">Job description</a>
+                        <button (click)="jobDetails(j)" class="btn btn-info btn-sm">Job description</button>
                     </div>
                 </div>
             </div>

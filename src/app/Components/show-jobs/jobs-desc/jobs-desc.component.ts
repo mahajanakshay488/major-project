@@ -8,8 +8,10 @@ import { EmployeeService, VacanciesService } from 'src/app/services';
   templateUrl: './jobs-desc.component.html',
   styleUrls: ['./jobs-desc.component.css']
 })
-export class JobsDescComponent implements OnInit, OnDestroy {
+export class JobsDescComponent implements OnInit {
   vacancy;
+  notApplied: boolean = true;
+  status;
   subs: Subscription;
   constructor(
     private vacancyService: VacanciesService,
@@ -18,17 +20,30 @@ export class JobsDescComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(){
-    this.vacancyService.activeVacancy.subscribe(value => {
-      this.vacancy = value;
-      console.log(`value ${value}`);
-    });
+    this.employeService.employee$.subscribe(e => {
+      
+      this.vacancyService.activeVacancy.subscribe(value => {
+        this.vacancy = value;
+  
+        value.appliedby.forEach(el => {
+          if(el.email === e.email){
+           this.notApplied = false; 
+           this.status = el.status;
+            console.log(el, this.status);
+          };
+        });
+        
+      });
+
+    })
   }
 
   onApplyNow(){
     this.subs = this.employeService.employee$.subscribe( employee => {
 
-      const{name, email, avatar} = employee;
-      const emp = {name, email, avatar};
+      const{name, email, resume} = employee;
+      let status = 'applied';
+      const emp = {name, email, resume, status};
       let newVacancy = this.vacancy;
 
       (newVacancy.appliedby.length === 1 && newVacancy.appliedby[0] !== 'object') ?
@@ -57,9 +72,5 @@ export class JobsDescComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/employe-dash']);
 
-  }
-
-  ngOnDestroy(){
-    this.subs.unsubscribe();
   }
 }

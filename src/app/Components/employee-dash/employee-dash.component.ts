@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from 'src/app/services';
+import { EmployeeService, VacanciesService } from 'src/app/services';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-employee-dash',
@@ -10,17 +11,44 @@ export class EmployeeDashComponent implements OnInit {
   vacancy;
   employe;
   constructor(
-    public EmployeeService: EmployeeService
+    private EmployeeService: EmployeeService,
+    private vacancyService: VacanciesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.EmployeeService.employee$.subscribe(e => {
       this.employe = e;
-      // e.apliedJobs[0].hasOwnProperty('title')?
-      // this.vacancy = e.apliedJobs : null;
     });
-
-    
+    this.getVacancy();
   }
 
+  getVacancy(){
+    this.vacancyService.FetchVacancy()
+    .subscribe((v: any) => {
+      console.log(v);
+
+      let vac = v.filter(v => {
+        var valid = false;
+        
+        v.appliedby.forEach(el => {
+            if(el.email === this.employe.email){
+              valid = true;
+            };
+        });
+
+        if(valid) return v;
+      });
+      console.log(vac);
+
+      (vac.length > 0) ? this.vacancy = vac : null;
+
+    });
+  }
+
+  jobDetails(vac){
+    this.vacancyService.activeVacancy.next(vac);
+    this.router.navigate(['/jobs-desc']);
+    console.log('click', vac);
+  }
 }

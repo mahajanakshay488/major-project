@@ -30,14 +30,6 @@
             </div>
 
             <div class="text-center">
-                <p class="rounded-circle bg-white job-desc"><i class="fas fa-briefcase text-primary"></i></p>
-                <div class="card-body">
-                    <h6 class="card-subtitle text-muted">{{vacancy.experience}} Yr.</h6>
-                    <small class="text-muted ">Experience</small>
-                </div>
-            </div>
-
-            <div class="text-center">
                 <p class="rounded-circle bg-white job-desc"><i class="fas fa-graduation-cap text-primary"></i></p>
                 <div class="card-body">
                     <h6 class="card-subtitle text-muted">{{vacancy.qualification}}</h6>
@@ -56,16 +48,18 @@
         </div>
 
         <hr>
-    <p class="display-3 text-center mt-3 mb-3 text-primary">Job Description</p>
+        
+        <h4 class="text-primary text-center mt-3 mb-3">Job Description</h4>
 
-    <p class="container jumbotron bg-white p-4">{{vacancy.description}}</p>
+        <p class="container jumbotron bg-white p-4">{{vacancy.description}}</p>
 
-    <div class="text-center jumbotron bg-transparent">
-        <h2 class="display-4 text-primary mb-3">Required Skills</h2>
-        <span *ngFor="let s of vacancy.skills" class="border border-primary rounded badge text-primary mr-3">{{s}}</span>
+        <div class="text-center jumbotron bg-transparent p-3">
+            <h4 class="text-primary mb-3">Required Skills</h4>
+            <span *ngFor="let s of vacancy.skills" class="border border-primary rounded badge text-primary mr-3">{{s}}</span>
+        </div>
+        
     </div>
-
-    </div>
-        <button (click)="onApplyNow()"  class="d-block btn btn-primary btn-lg mb-4 ml-auto mr-auto">Apply Now</button>
+    <button *ngIf="!notApplied"  class="d-block btn btn-success btn-lg mb-4 ml-auto mr-auto">Applied</button>
+    <button *ngIf="notApplied" (click)="onApplyNow()"  class="d-block btn btn-primary btn-lg mb-4 ml-auto mr-auto">Apply Now</button>
 </section>
 

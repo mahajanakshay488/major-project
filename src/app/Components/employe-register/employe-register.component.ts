@@ -43,7 +43,7 @@ export class EmployeRegisterComponent implements OnInit {
   registerEmployee(){
     const employee = this.form.form.value;
     employee.resume = this.avatarUrl;
-    // employee.apliedJobs = [''];
+    employee.avatar = '';
     this.unsubs.unsubscribe();
     this.EmployeeService.RegisterEmployee(employee);
   }

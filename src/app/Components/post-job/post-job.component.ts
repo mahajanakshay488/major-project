@@ -21,16 +21,16 @@ export class PostJobComponent implements OnInit {
     this.employerService.employer$.subscribe( employer => {
       const vacancy = this.form.form.value;
 
-      const { title, role, skills, salary, city, 
-        experience, qualification, course, description, gender 
+      const { title, role, skills, salary, city, work,
+       qualification, course, description, gender 
       } = vacancy;
 
       vacancy.skills = skills.split(',');
       vacancy.postedby = {name: employer.name, email: employer.email, avatar: employer.avatar};
       vacancy.appliedby = [''];
 
-      const employerVacancy = { title, role, skills, salary, city, 
-        experience, qualification, course, description, gender
+      const employerVacancy = { title, role, skills, salary, city, work,
+       qualification, course, description, gender
       };
 
       // (employer.postedJobs.length === 1 && employer.postedJobs[0] == '') ?
@@ -40,6 +40,20 @@ export class PostJobComponent implements OnInit {
 
         return this.vacanciesService.CreateVacancy(vacancy);
     } );
+  }
+
+  onPatchValue(){
+    this.form.form.patchValue({
+      title: 'Java Development',
+      role: "Programmer",
+      skills: 'java, spring',
+      salary: 20000,
+      city: 'bhopal',
+      work: 'In Office',
+      qualification: '10+2 or above',
+      description: 'We are looking for quick learner who has best practice with projects.',
+      gender: 'both'
+    })
   }
 
 }

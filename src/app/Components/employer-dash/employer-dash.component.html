@@ -29,7 +29,7 @@
       <div *ngIf="vacancy else empty">
         <div class="list-group" id="list-tab" role="tablist">
         
-          <a *ngFor="let j of vacancy; let i = index" class="list-group-item list-group-item-action {{i===0 ? 'active' : ''}}" id="list-{{i}}-list" data-toggle="list" href="#list-{{i}}" role="tab" aria-controls="{{i}}">
+          <a *ngFor="let j of vacancy; let i = index" (click)="applicantDestroy()" class="list-group-item list-group-item-action {{i===0 ? 'active' : ''}}" id="list-{{i}}-list" data-toggle="list" href="#list-{{i}}" role="tab" aria-controls="{{i}}">
             {{j.title}}
           </a>
         </div>
@@ -42,7 +42,7 @@
       <div class="tab-content" id="nav-tabContent">
         <div *ngFor="let j of vacancy; let i = index" class="tab-pane fade show {{i===0 ? 'active' : ''}}" id="list-{{i}}" role="tabpanel" aria-labelledby="list-{{i}}-list">
 
-            <div class="card container bg-light w-60 p-4 mt-3">
+            <div class="container col-8  bg-light p-4 mt-3">
         
               <div class="d-flex flex-row align-items-center">
                   <div class="card-body">
@@ -63,14 +63,6 @@
                   </div>
       
                   <div class="text-center">
-                      <p><i class="fas fa-briefcase text-primary"></i></p>
-                      <div class="card-body">
-                          <h6 class="card-subtitle text-muted">{{j.experience}} Yr.</h6>
-                          <small class="text-muted ">Experience</small>
-                      </div>
-                  </div>
-      
-                  <div class="text-center">
                       <p><i class="fas fa-graduation-cap text-primary"></i></p>
                       <div class="card-body">
                           <h6 class="card-subtitle text-muted">{{j.qualification}}</h6>
@@ -87,6 +79,8 @@
                   </div>
               </div>
 
+              <p class="display-5 text-center mt-3 mb-3 text-secondary">{{j.work}}</p>
+
               <p class="display-5 text-center mt-3 mb-3 text-primary">Job Description</p>
 
               <p class="text-center">{{j.description}}</p>
@@ -96,13 +90,25 @@
                 <p class="display-5 text-center mb-3">{{j.skills}}</p>
               </div>
               <div class="text-center mt-2">
-                <button (click)="deleteVacancy(j)" type="button" class="btn btn-outline-danger btn-sm">
-                  <i class="bi bi-archive"></i> &nbsp; Post Job
-                </button>
+                <!-- <button (click)="deleteVacancy(j)" type="button" class="btn btn-outline-danger btn-sm">
+                  <i class="bi bi-archive"></i> &nbsp; Delete Vacancy
+                </button> -->
+                <div>
+                  <button (click)="getApplicants(j, target)" *ngIf="j.appliedby[0] !== ''" type="button" class="btn btn-outline-info btn-sm">
+                    {{j.appliedby.length}} &nbsp; Applicants
+                  </button>
+                  <button *ngIf="j.appliedby[0] === ''" type="button" class="btn btn-outline-secondary btn-sm">
+                    0 Applicants
+                  </button>
+                </div>
+
               </div>
               
             </div>
         </div>
       </div>
     </div>
-  </div>
+</div>
+<div #target>
+  <app-applicants></app-applicants>
+</div>
