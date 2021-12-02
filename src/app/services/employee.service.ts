@@ -8,7 +8,6 @@ import { switchMap, map } from 'rxjs/operators';
 export interface Employee{
   name: string,
   email: string,
-  avatar: string,
   resume: string
 }
 
@@ -54,8 +53,8 @@ export class EmployeeService {
 
   RegisterEmployee(employee){
     this.auth.createUserWithEmailAndPassword(employee.email, employee.password).then(employe => {
-      const { name, email, avatar, resume } = employee;
-      this.CreateEmployee({ name, email, avatar, resume }, employe.user.uid);
+      const { name, email, resume } = employee;
+      this.CreateEmployee({ name, email, resume }, employe.user.uid);
     });
   }
 

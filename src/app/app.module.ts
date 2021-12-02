@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DragDropModule } from "@angular/cdk/drag-drop";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -52,7 +52,7 @@ import { ApplicantsComponent } from './Components/employer-dash/applicants/appli
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    DragDropModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

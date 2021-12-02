@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 export class EmployeeDashComponent implements OnInit {
   vacancy;
   employe;
+  vacStatus;
   constructor(
     private EmployeeService: EmployeeService,
     private vacancyService: VacanciesService,
@@ -50,5 +51,13 @@ export class EmployeeDashComponent implements OnInit {
     this.vacancyService.activeVacancy.next(vac);
     this.router.navigate(['/jobs-desc']);
     console.log('click', vac);
+  }
+
+  getStatus(i){
+    this.vacancy[i].appliedby.forEach( e => {
+      if(e.email === this.employe.email){
+        this.vacStatus = e.status;
+      }
+    });
   }
 }

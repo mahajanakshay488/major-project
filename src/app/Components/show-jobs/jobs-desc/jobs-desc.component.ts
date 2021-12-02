@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs';
-import { EmployeeService, VacanciesService } from 'src/app/services';
+import { EmployeeService, MailService, VacanciesService } from 'src/app/services';
 
 @Component({
   selector: 'app-jobs-desc',
@@ -13,15 +13,18 @@ export class JobsDescComponent implements OnInit {
   notApplied: boolean = true;
   status;
   subs: Subscription;
+  employe;
+
   constructor(
     private vacancyService: VacanciesService,
     private employeService: EmployeeService,
+    private mailService: MailService,
     private router: Router
   ) { }
 
   ngOnInit(){
     this.employeService.employee$.subscribe(e => {
-      
+      this.employe = e;    
       this.vacancyService.activeVacancy.subscribe(value => {
         this.vacancy = value;
   
@@ -39,10 +42,9 @@ export class JobsDescComponent implements OnInit {
   }
 
   onApplyNow(){
-    this.subs = this.employeService.employee$.subscribe( employee => {
 
-      const{name, email, resume} = employee;
-      let status = 'applied';
+      const{name, email, resume} = this.employe;
+      let status = 'Applied';
       const emp = {name, email, resume, status};
       let newVacancy = this.vacancy;
 
@@ -51,24 +53,7 @@ export class JobsDescComponent implements OnInit {
 
       this.vacancyService.UpdateVacancy(newVacancy);
 
-      this.subs.unsubscribe();
-
-      /* const{
-        title, avatar, role, skills, salary, experience, qualification, 
-        course, description, gender, city, postedby
-      } = this.vacancy;
-
-      const employeVacancy = {
-        title, avatar, role, skills, salary, experience, qualification, 
-        course, description, gender, city, postedby
-      };
-
-      (employee.apliedJobs.length === 1 && employee.apliedJobs[0] !== 'object') ?
-      employee.apliedJobs[0] = employeVacancy : employee.apliedJobs.push(employeVacancy);
-      
-      this.employeService.UpdateEmployee(employee); */
-
-    });
+      this.mailService.apliedVacancy(emp, this.vacancy);
 
     this.router.navigate(['/employe-dash']);
 

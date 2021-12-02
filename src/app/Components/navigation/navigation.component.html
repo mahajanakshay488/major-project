@@ -46,10 +46,10 @@
       <header>
         <a class="navbar-brand">
             <img src="../../assets/temp-logo.png" height="30" alt="">
-            Major Job
+            Get-Job
         </a>
       </header>
-      <ul class="list-group">
+      <ul *ngIf="!Loggedin" class="list-group">
         
         <a 
           [routerLink]="['/', pathString + '-login']" 
@@ -60,6 +60,8 @@
           class="list-group-item">Register</a>
       
       </ul>
+      
+      <p class="text-muted ml-3">Hello birdii, We help skilled students to get job.</p>
     </div>
     
     <main class="bmd-layout-content">

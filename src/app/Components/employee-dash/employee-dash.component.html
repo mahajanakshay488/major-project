@@ -7,10 +7,9 @@
     <div class="w-20">
 
       <div class=" d-flex flex-column align-items-center p-2 mb-3">
-        <div style="width: 100px; height: 100px;" class="rounded-circle bg-light">
-          <p class="display-4 text-center"></p>
-        </div>
-        <!-- <img src="" class="rounded-circle" height="100" width="100" alt="..."> -->
+
+        <img src="../../../assets/employe-image.png" width="100" alt="sugested-image..">
+        
         <strong class="mt-2">{{employe.name}}</strong>  
         <small>{{employe.email}}</small>
       </div>
@@ -39,7 +38,7 @@
       <div *ngIf="(vacancy) else empty">
         <div class="list-group" id="list-tab" role="tablist">
         
-          <a *ngFor="let j of vacancy; let i = index" class="list-group-item list-group-item-action {{i===0 ? 'active' : ''}}" id="list-{{i}}-list" data-toggle="list" href="#list-{{i}}" role="tab" aria-controls="{{i}}">
+          <a *ngFor="let j of vacancy; let i = index" (click)="getStatus(i)" class="list-group-item list-group-item-action {{i===0 ? 'active' : ''}}" id="list-{{i}}-list" data-toggle="list" href="#list-{{i}}" role="tab" aria-controls="{{i}}">
             {{j.title}}
           </a>
         </div>
@@ -58,7 +57,12 @@
                     <img src="{{j.postedby.avatar}}" height="100" width="auto" alt="...">
                     <div class="card-body">
                         <p class="card-text">{{j.description}}</p>
-                        <button (click)="jobDetails(j)" class="btn btn-info btn-sm">Job description</button>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <button (click)="jobDetails(j)" class="btn btn-info btn-sm">Job description</button>
+
+                          <strong *ngIf="vacStatus !== 'Applied'" [class]="(vacStatus == 'Selected') ? 'text-success' : 'text-muted'">{{vacStatus}}</strong>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
