@@ -80,6 +80,7 @@ export class EmployeeService {
   UpdateEmployee(employee){
     this.employeeRef.update(this.activeEmployeeId, employee);
     console.log('employee updated!');
+    this.router.navigate(['/employe-dash']);
   }
   
 }

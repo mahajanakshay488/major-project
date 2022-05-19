@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { VacanciesService } from 'src/app/services';
+import { EmployeeService, VacanciesService } from 'src/app/services';
 
 @Component({
   selector: 'app-show-jobs',
@@ -13,12 +13,31 @@ matchedVacancy;
 subs: Subscription;
   constructor(
     private vacancyService: VacanciesService,
-    private router: Router
+    private router: Router,
+    private employeService: EmployeeService
   ) { }
 
   ngOnInit(): void {
     this.subs = this.vacancyService.searchVacancy.subscribe(value => {
-      this.matchedVacancy = value;
+
+      this.employeService.employee$.subscribe(u => {
+        var vacanc = [];
+        value.forEach(el => {
+          var yes = true;
+
+          el.appliedby.forEach(ell => {
+            yes = (ell.email === u.email) ? false : true;
+          })
+
+          if(yes){
+            vacanc.push(el);
+          }
+          this.matchedVacancy = vacanc;
+          console.log(this.matchedVacancy)
+        });
+
+      });
+      
       //console.log(value);
     });
   }

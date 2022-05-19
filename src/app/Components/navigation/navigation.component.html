@@ -25,7 +25,7 @@
   </li>
 
 </ng-template>
-
+<!-- 
 <div class="bmd-layout-container bmd-drawer-f-t bmd-drawer-overlay ">
 
     <header class="bmd-layout-header main-bgcolor">
@@ -61,7 +61,7 @@
       
       </ul>
       
-      <p class="text-muted ml-3">Hello birdii, We help skilled students to get job.</p>
+      <p class="text-muted ml-3">Hello sir, We help skilled students to get job.</p>
     </div>
     
     <main class="bmd-layout-content">
@@ -78,4 +78,64 @@
           </div>
         </footer>
     </main>
-  </div>
+  </div> -->
+
+  <nav class="navbar navbar-expand-lg main-bgcolor fixed-top">
+    <a routerLink="/" class="navbar-brand">
+      <img src="../../assets/temp-logo.png" height="25" alt="" class="mr-2">
+      Get Job
+  </a>
+    <div class="collapse navbar-collapse ml-2">
+      <div class="navbar-nav">
+        <!-- <a class="nav-item nav-link active-link" href="#">Home</a>
+        <a class="nav-item nav-link" href="#">Features</a>
+        <a class="nav-item nav-link" href="#">Pricing</a> -->
+
+        <a class="nav-item nav-link"
+          routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+          class="list-group-item">Home</a>
+
+          <div *ngIf="Loggedin" class="d-flex">
+              <a class="nav-item nav-link"
+            [routerLink]="['/', profLink + '-dash']" routerLinkActive="active-link"
+            class="list-group-item">Profile</a>
+            
+            <a class="nav-item nav-link" *ngIf="profLink == 'employe'"
+            routerLink="/employe-update" routerLinkActive="active-link"
+            class="list-group-item">Upload New Resume</a>
+          </div>
+
+          <div *ngIf="!Loggedin" class="d-flex">
+
+            <a class="nav-item nav-link"
+          [routerLink]="['/', pathString + '-login']" routerLinkActive="active-link"
+          class="list-group-item">Login</a>
+        
+        <a class="nav-item nav-link"
+          [routerLink]="['/', pathString + '-register']" routerLinkActive="active-link"
+          class="list-group-item">Register</a>
+          </div>
+        
+      </div>
+    </div>
+    <ul class="nav navbar-nav">
+      <div *ngIf="Loggedin else panelContent" class="d-flex">
+        <button (click)="Logout()" class="toggle-logout">Signout</button>
+      </div>
+    </ul>
+  </nav>
+  <div style="width: 100%; height: 55px;" ></div>
+  <main class="navigation-contianer">
+    
+        
+    <router-outlet></router-outlet>
+  </main> 
+    
+      <footer class="footer pt-2 pb-2 main-bgcolor">
+        <div class="container d-flex justify-content-between align-items-center">
+          <span class="text-muted">Major Project</span>
+          <small class="text-muted">Created by Akshay & Mayur.</small>
+          <img src="../../assets/temp-logo.png" width="27" alt="">
+        </div>
+      </footer>
+ 

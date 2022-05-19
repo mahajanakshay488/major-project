@@ -2,6 +2,8 @@
 
     <h1 class="container  display-3 pt-5">Searched Related Jobs</h1>
 
+    <p *ngIf="matchedVacancy.length == 0" class="container text-muted" >Not Posted Yet.</p>
+
     <div *ngFor=" let v of matchedVacancy" class="card p-2 container w-50 mt-3">
         <h5 class="card-title">{{v.title}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{v.role}}</h6>

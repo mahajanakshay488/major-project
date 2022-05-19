@@ -1,3 +1,5 @@
+
+
 .navigation-contianer{
     overflow: auto;
     width: 100% ;
@@ -23,9 +25,9 @@ input[type="radio"].toggle {
     display: none;
   }
 
-  a{
+  /* a{
     font-size: 16px !important;
-  }
+  } */
 
   label{
     outline: none
@@ -62,4 +64,12 @@ input[type="radio"].toggle:checked + label {
   input[type="radio"].toggle-right + label {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  a{
+    color: rgb(223, 223, 223);
+  }
+
+  .active-link{
+    color: #07a797;
   }

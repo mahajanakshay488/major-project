@@ -12,6 +12,7 @@ import { EmployeLoginComponent } from './Components/employe-login/employe-login.
 import { PostJobComponent } from './Components/post-job/post-job.component';
 import { EmployerDashComponent } from './Components/employer-dash/employer-dash.component';
 import { EmployeeDashComponent } from './Components/employee-dash/employee-dash.component';
+import { EmployeeUpdateComponent } from "./Components/employee-dash/employee-update/employee-update.component";
 
 import { EmployeeGuard } from "./services/Guards/employee.guard";
 import { EmployerGuard } from "./services/Guards/employer.guard";
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
     { path: 'post-job', component: PostJobComponent, canActivate:[EmployerGuard] },
     { path: 'employer-dash', component: EmployerDashComponent, canActivate:[EmployerGuard] },
     { path: 'employe-dash', component: EmployeeDashComponent, canActivate:[EmployeeGuard] },
+    { path: 'employe-update', component: EmployeeUpdateComponent, canActivate:[EmployeeGuard] },
 ];
 
 @NgModule({

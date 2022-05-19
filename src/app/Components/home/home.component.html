@@ -1,15 +1,16 @@
-  <section class="home-container pt-4 pb-4">
+  <section class="home-container pt-4">
 
-    <form (ngSubmit)="jobSearchSubmit()" #form="ngForm" class="jumbotron container bg-dark w-50 p-4">
+    <form (ngSubmit)="jobSearchSubmit()" #form="ngForm" class="container w-50" style="background-color: #ffff; border-radius: 4px; padding: 20px;" >
+      <p class="display-3 mt-5">Search For Job</p>
     <div class="form-group">
       <label  class="bmd-label-floating text-primary">Job Title</label>
-      <input ngModel name="title" type="text" class="form-control text-white">
+      <input ngModel name="title" type="text" class="form-control">
       <small class="text-white">e.g. job, company, title</small>
     </div>
     
     <div class="form-group">
       <label class="bmd-label-floating text-primary">JOb City</label>
-      <input ngModel name="city" type="text" class="form-control text-white">
+      <input ngModel name="city" type="text" class="form-control">
       <small class="text-white">e.g. city or state</small>
     </div> 
 
@@ -20,7 +21,7 @@
     </div> 
   </form>
 
-  <div class="container text-center bg-transparent">
+  <div class="text-center pt-5 pb-3">
     <figure class="mb-0">
       <img src="../../assets/./undraw02.svg" height="290" alt="">
       <img src="../../assets/./undraw01.svg" height="290" alt="">

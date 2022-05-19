@@ -20,8 +20,8 @@ export class EmployeeDashComponent implements OnInit {
   ngOnInit(): void {
     this.EmployeeService.employee$.subscribe(e => {
       this.employe = e;
+      this.getVacancy();
     });
-    this.getVacancy();
   }
 
   getVacancy(){

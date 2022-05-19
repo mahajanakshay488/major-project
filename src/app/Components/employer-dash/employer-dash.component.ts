@@ -23,9 +23,10 @@ export class EmployerDashComponent implements OnInit {
       this.employer = e;
       // e.postedJobs[0].hasOwnProperty('title') ?
       // this.vacancy = e.postedJobs : null;
+      this.getVacancy();
     });
 
-    this.getVacancy();
+    
   }
 
   getVacancy(){

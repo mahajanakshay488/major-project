@@ -11,15 +11,23 @@ export class NavigationComponent implements OnInit {
   defaultPanel: string = 'employe';
   pathString: string = 'employe' ;
   Loggedin: boolean;
+  user: any;
+  profLink: String = "employe";
   constructor(
     private appService: AppService
   ) { }
 
   ngOnInit(): void {
     this.appService.validUser.subscribe( value => {
-      if(value) this.Loggedin = true;
+      if(value) {
+        this.Loggedin = true;
+        this.user = value;
+      }
       else this.Loggedin = false;
+      console.log(this.user, "user");
+      this.profLink = (this.user.resume)  ? "employe" : "employer";
     })
+    // if()
    }
 
   onPanelSwitch(value){

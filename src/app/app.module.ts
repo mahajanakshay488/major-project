@@ -26,6 +26,7 @@ import { PostJobComponent } from './Components/post-job/post-job.component';
 import { EmployerDashComponent } from './Components/employer-dash/employer-dash.component';
 import { EmployeeDashComponent } from './Components/employee-dash/employee-dash.component';
 import { ApplicantsComponent } from './Components/employer-dash/applicants/applicants.component';
+import { EmployeeUpdateComponent } from './Components/employee-dash/employee-update/employee-update.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ApplicantsComponent } from './Components/employer-dash/applicants/appli
     PostJobComponent,
     EmployerDashComponent,
     EmployeeDashComponent,
-    ApplicantsComponent
+    ApplicantsComponent,
+    EmployeeUpdateComponent
   ],
   imports: [
     BrowserModule,
