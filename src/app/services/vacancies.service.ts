@@ -57,9 +57,17 @@ export class VacanciesService {
 
   async SearchVacancy(title, city){
     await this.FetchVacancy().subscribe( vacancy => {
-      let filterVacancy = vacancy.filter( v => v.title.toLowerCase().includes(title.toLowerCase()) && 
+      if(title == 'all'){
+        this.searchVacancy.next(vacancy);
+        console.log('bro');
+      }
+      else{
+        let filterVacancy = vacancy.filter( v => v.title.toLowerCase().includes(title.toLowerCase()) && 
         v.city.toLowerCase() === city.toLowerCase());
-        this.searchVacancy.next(filterVacancy);
+        this.searchVacancy.next(vacancy);
+      }
+      
+        
     });
   }
 

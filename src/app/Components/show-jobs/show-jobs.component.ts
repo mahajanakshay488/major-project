@@ -10,6 +10,7 @@ import { EmployeeService, VacanciesService } from 'src/app/services';
 })
 export class ShowJobsComponent implements OnInit, OnDestroy {
 matchedVacancy;
+allvac:boolean;
 subs: Subscription;
   constructor(
     private vacancyService: VacanciesService,
@@ -21,20 +22,29 @@ subs: Subscription;
     this.subs = this.vacancyService.searchVacancy.subscribe(value => {
 
       this.employeService.employee$.subscribe(u => {
-        var vacanc = [];
-        value.forEach(el => {
-          var yes = true;
+        if(u){
+          var vacanc = [];
+          value.forEach(el => {
+            var yes = true;
 
-          el.appliedby.forEach(ell => {
-            yes = (ell.email === u.email) ? false : true;
-          })
+            el.appliedby.forEach(ell => {
+              yes = (ell.email === u.email) ? false : true;
+            })
 
-          if(yes){
-            vacanc.push(el);
-          }
-          this.matchedVacancy = vacanc;
-          console.log(this.matchedVacancy)
-        });
+            if(yes){
+              vacanc.push(el);
+            }
+            this.matchedVacancy = vacanc;
+            console.log(this.matchedVacancy)
+          });  
+        }
+        else{
+          this.matchedVacancy = value;
+        }
+        this.vacancyService.FetchVacancy().subscribe(v=>{
+          if(v.length == value.length) this.allvac = true;
+        })
+      
 
       });
       

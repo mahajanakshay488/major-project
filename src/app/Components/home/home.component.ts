@@ -16,10 +16,12 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
   }
 
   async jobSearchSubmit(){
-    const { title, city } = this.form.form.value;
+    var { title, city } = this.form.form.value;
+    if(title.length == 0) title = 'all';
     await  this.vacancyService.SearchVacancy(title, city);
     this.router.navigate(['/show-jobs']);
   }

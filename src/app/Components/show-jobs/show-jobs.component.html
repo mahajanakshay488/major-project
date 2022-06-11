@@ -1,6 +1,6 @@
 <section class="w-100 show-jobs-container">
 
-    <h1 class="container  display-3 pt-5">Searched Related Jobs</h1>
+    <h1 class="container  display-3 pt-5">{{(allvac)? "ALL Jobs" : "Searched Related Jobs"}}</h1>
 
     <p *ngIf="matchedVacancy.length == 0" class="container text-muted" >Not Posted Yet.</p>
 
