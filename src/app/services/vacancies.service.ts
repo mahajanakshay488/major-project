@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 export interface Vacany{
   title: string,
@@ -57,17 +57,9 @@ export class VacanciesService {
 
   async SearchVacancy(title, city){
     await this.FetchVacancy().subscribe( vacancy => {
-      if(title == 'all'){
-        this.searchVacancy.next(vacancy);
-        console.log('bro');
-      }
-      else{
         let filterVacancy = vacancy.filter( v => v.title.toLowerCase().includes(title.toLowerCase()) && 
         v.city.toLowerCase() === city.toLowerCase());
-        this.searchVacancy.next(vacancy);
-      }
-      
-        
+        this.searchVacancy.next(filterVacancy);
     });
   }
 

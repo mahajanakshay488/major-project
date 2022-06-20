@@ -16,12 +16,13 @@ import { EmployeeUpdateComponent } from "./Components/employee-dash/employee-upd
 
 import { EmployeeGuard } from "./services/Guards/employee.guard";
 import { EmployerGuard } from "./services/Guards/employer.guard";
+import { SearchedJobsComponent } from './Components/show-jobs/searched-jobs/searched-jobs.component';
 
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'show-jobs', component: ShowJobsComponent },
-    { path: 'jobs-desc', component: JobsDescComponent },
+    { path: 'show-jobs/searched-jobs', component: SearchedJobsComponent },
     { path: 'jobs-desc', component: JobsDescComponent },
     { path: 'employe-login', component: EmployeLoginComponent },
     { path: 'employer-login', component: EmployerLoginComponent },

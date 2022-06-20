@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { VacanciesService } from 'src/app/services';
 
 @Component({
@@ -12,7 +12,8 @@ export class HomeComponent implements OnInit {
   @ViewChild('form') form : NgForm;
   constructor(
     private vacancyService: VacanciesService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -21,9 +22,8 @@ export class HomeComponent implements OnInit {
 
   async jobSearchSubmit(){
     var { title, city } = this.form.form.value;
-    if(title.length == 0) title = 'all';
     await  this.vacancyService.SearchVacancy(title, city);
-    this.router.navigate(['/show-jobs']);
+    this.router.navigate(['show-jobs/searched-jobs']);
   }
 
 }

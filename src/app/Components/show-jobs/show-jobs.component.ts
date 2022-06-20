@@ -9,8 +9,7 @@ import { EmployeeService, VacanciesService } from 'src/app/services';
   styleUrls: ['./show-jobs.component.css']
 })
 export class ShowJobsComponent implements OnInit, OnDestroy {
-matchedVacancy;
-allvac:boolean;
+vacancy;
 subs: Subscription;
   constructor(
     private vacancyService: VacanciesService,
@@ -19,7 +18,7 @@ subs: Subscription;
   ) { }
 
   ngOnInit(): void {
-    this.subs = this.vacancyService.searchVacancy.subscribe(value => {
+    this.subs = this.vacancyService.FetchVacancy().subscribe(value => {
 
       this.employeService.employee$.subscribe(u => {
         if(u){
@@ -34,17 +33,12 @@ subs: Subscription;
             if(yes){
               vacanc.push(el);
             }
-            this.matchedVacancy = vacanc;
-            console.log(this.matchedVacancy)
+            this.vacancy = vacanc;
           });  
         }
         else{
-          this.matchedVacancy = value;
+          this.vacancy = value;
         }
-        this.vacancyService.FetchVacancy().subscribe(v=>{
-          if(v.length == value.length) this.allvac = true;
-        })
-      
 
       });
       

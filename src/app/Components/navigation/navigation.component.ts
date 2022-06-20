@@ -1,6 +1,6 @@
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
-import { AppService } from 'src/app/services';
+import { AppService, VacanciesService } from 'src/app/services';
 
 @Component({
   selector: 'app-navigation',
@@ -14,7 +14,8 @@ export class NavigationComponent implements OnInit {
   user: any;
   profLink: String = "employe";
   constructor(
-    private appService: AppService
+    private appService: AppService,
+    private vacService: VacanciesService
   ) { }
 
   ngOnInit(): void {

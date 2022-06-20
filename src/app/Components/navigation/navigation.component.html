@@ -95,6 +95,11 @@
           routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
           class="list-group-item">Home</a>
 
+          <a class="nav-item nav-link"
+          routerLink="/show-jobs" routerLinkActive="active-link"
+          class="list-group-item">Jobs</a>  
+
+
           <div *ngIf="Loggedin" class="d-flex">
               <a class="nav-item nav-link"
             [routerLink]="['/', profLink + '-dash']" routerLinkActive="active-link"

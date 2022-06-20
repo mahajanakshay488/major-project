@@ -27,6 +27,7 @@ import { EmployerDashComponent } from './Components/employer-dash/employer-dash.
 import { EmployeeDashComponent } from './Components/employee-dash/employee-dash.component';
 import { ApplicantsComponent } from './Components/employer-dash/applicants/applicants.component';
 import { EmployeeUpdateComponent } from './Components/employee-dash/employee-update/employee-update.component';
+import { SearchedJobsComponent } from './Components/show-jobs/searched-jobs/searched-jobs.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { EmployeeUpdateComponent } from './Components/employee-dash/employee-upd
     EmployerDashComponent,
     EmployeeDashComponent,
     ApplicantsComponent,
-    EmployeeUpdateComponent
+    EmployeeUpdateComponent,
+    SearchedJobsComponent,
   ],
   imports: [
     BrowserModule,
