@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
+import { CustomMaterialModule } from "./custom-material.module";
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from "@angular/fire/database";
@@ -56,7 +57,8 @@ import { SearchedJobsComponent } from './Components/show-jobs/searched-jobs/sear
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    HttpClientModule
+    HttpClientModule,
+    CustomMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
